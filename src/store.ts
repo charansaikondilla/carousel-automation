@@ -40,8 +40,8 @@ const defaultSlide: Omit<Slide, 'id'> = {
   backgroundStyle: 'paper',
   fontFamily: 'libre',
   layout: 'minimal',
-  headlineFontSize: 44,
-  bodyFontSize: 20,
+  headlineFontSize: 52,
+  bodyFontSize: 24,
 };
 
 const initialSlide: Slide = { ...defaultSlide, id: uuidv4() };

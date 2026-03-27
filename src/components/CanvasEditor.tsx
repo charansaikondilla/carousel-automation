@@ -23,11 +23,11 @@ export const CanvasEditor: React.FC = () => {
       if (!containerRef.current) return;
       const { clientWidth, clientHeight } = containerRef.current;
       // 1080x1080 is the target size. We want some padding.
-      const padding = window.innerWidth < 768 ? 20 : 96;
+      const padding = window.innerWidth < 768 ? 8 : 72;
       const availableWidth = clientWidth - padding;
       const availableHeight = clientHeight - padding;
       const newScale = Math.min(availableWidth / 1080, availableHeight / 1080);
-      setScale(newScale > 0 ? Math.max(newScale, 0.12) : 0.12);
+      setScale(newScale > 0 ? Math.max(newScale, 0.16) : 0.16);
     };
 
     calculateScale();

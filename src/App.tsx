@@ -8,7 +8,7 @@ export default function App() {
     <div className="flex flex-col h-[100dvh] w-full bg-gray-50 overflow-hidden">
       <TopBar />
       
-      <div className="grid grid-rows-2 flex-1 overflow-hidden min-h-0">
+      <div className="grid grid-rows-[58%_42%] md:grid-rows-2 flex-1 overflow-hidden min-h-0">
         {/* Preview Area (Top for all screen sizes) */}
         <div className="w-full min-h-0 border-b border-gray-200 relative bg-white overflow-hidden">
           <CanvasEditor />
