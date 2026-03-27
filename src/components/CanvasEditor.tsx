@@ -7,6 +7,7 @@ export const CanvasEditor: React.FC = () => {
   const { slides, activeSlideId, setActiveSlide, updateSlide } = useCarouselStore();
   const containerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
+  const [previewSize, setPreviewSize] = useState(320);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const swipeStartX = useRef<number | null>(null);
 
@@ -26,7 +27,9 @@ export const CanvasEditor: React.FC = () => {
       const padding = window.innerWidth < 768 ? 8 : 72;
       const availableWidth = clientWidth - padding;
       const availableHeight = clientHeight - padding;
-      const newScale = Math.min(availableWidth / 1080, availableHeight / 1080);
+      const squareSize = Math.max(120, Math.min(availableWidth, availableHeight));
+      const newScale = squareSize / 1080;
+      setPreviewSize(squareSize);
       setScale(newScale > 0 ? Math.max(newScale, 0.16) : 0.16);
     };
 
@@ -164,11 +167,10 @@ export const CanvasEditor: React.FC = () => {
       {/* Canvas Area */}
       <div className="flex-1 flex items-center justify-center overflow-hidden">
         <div
-          className="relative shadow-2xl transition-transform origin-center"
+          className="relative shadow-2xl overflow-hidden"
           style={{
-            width: 1080,
-            height: 1080,
-            transform: `scale(${scale})`,
+            width: previewSize,
+            height: previewSize,
           }}
         >
           {/* The actual slide content to be exported */}
@@ -181,6 +183,10 @@ export const CanvasEditor: React.FC = () => {
             style={{
               backgroundColor: activeSlide.backgroundColor,
               fontFamily: `var(--font-${activeSlide.fontFamily})`,
+              width: 1080,
+              height: 1080,
+              transform: `scale(${scale})`,
+              transformOrigin: 'top left',
             }}
           >
             {/* Safe Area Guide (Visible only in editor, not exported) */}
